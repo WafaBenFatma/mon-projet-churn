@@ -7,7 +7,7 @@ import joblib
 model = joblib.load("logreg_smote_model.pkl")
 scaler = joblib.load("scaler.pkl")
 
-st.title("🔍 Prédiction du Churn client")
+st.title("Prédiction du Churn client")
 
 st.markdown("Remplis les informations du client pour prédire s’il risque de résilier son abonnement.")
 
@@ -77,11 +77,11 @@ user_df_encoded = user_df_encoded[expected_columns]
 user_scaled = scaler.transform(user_df_encoded)
 
 # Prédiction
-if st.button("🔮 Prédire"):
+if st.button(" Prédire"):
     prediction = model.predict(user_scaled)
     proba = model.predict_proba(user_scaled)[0][1]
 
     if prediction[0] == 1:
-        st.error(f"⚠️ Risque élevé de churn : {proba*100:.2f}%")
+        st.error(f" Risque élevé de churn : {proba*100:.2f}%")
     else:
-        st.success(f"✅ Client fidèle : {100 - proba*100:.2f}% de chances de rester")
+        st.success(f" Client fidèle : {100 - proba*100:.2f}% de chances de rester")
